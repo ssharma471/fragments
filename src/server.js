@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // src/server.js
 const process = require('process');
 
