@@ -3,10 +3,14 @@
 /**
  * Get a list of fragments for the current user
  */
+const { createSuccessResponse } = require('../../response');
+
 module.exports = (req, res) => {
-    // TODO: this is just a placeholder to get something working...
-    res.status(200).json({
-      status: 'ok',
-      fragments: [],
-    });
-  };
+  // TODO: Replace this with actual data retrieval logic
+  const fragments = []; // Replace with your data retrieval logic here
+
+  res.status(200).json(createSuccessResponse({
+    status: 'ok',
+    fragments,
+  }));
+};

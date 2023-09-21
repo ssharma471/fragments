@@ -1,10 +1,9 @@
-// src/app.js
-
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
-
+const passport = require('passport'); // Import Passport
+const authenticate = require('./auth'); // Import your authentication strategy
 const logger = require('./logger');
 const pino = require('pino-http')({
   // Use our default logger instance, which is already configured
@@ -22,14 +21,6 @@ app.use(helmet());
 
 // Use CORS middleware so we can make requests across origins
 app.use(cors());
-
-// Use gzip/deflate compression middleware
-app.use(compression());
-
-// modifications to src/app.js
-const passport = require('passport');
-
-const authenticate = require('./auth');
 
 // Use gzip/deflate compression middleware
 app.use(compression());
