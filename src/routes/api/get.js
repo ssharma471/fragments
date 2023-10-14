@@ -6,7 +6,6 @@
 const { createSuccessResponse } = require('../../response');
 
 module.exports = (req, res) => {
-  // TODO: Replace this with actual data retrieval logic
   const fragments = []; // Replace with your data retrieval logic here
 
   res.status(200).json(createSuccessResponse({
