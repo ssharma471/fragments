@@ -1,27 +1,30 @@
-require('dotenv').config();
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const port = process.env.PORT || 8080;
 
-// src/server.js
-const process = require('process');
+app.use(bodyParser.json());
 
-// We want to gracefully shutdown our server
-const stoppable = require('stoppable');
+const fragments = []; 
 
-// Get our logger instance
-const logger = require('./logger');
+app.post('/fragments', (req, res) => {
+  const { type, content } = req.body;
 
-// Get our express app instance
-const app = require('./app');
+  if (!type || !content) {
+    return res.status(400).json({ error: 'Type and content are required.' });
+  }
 
-// Get the desired port from the process environment. Default to `8080`
-const port = parseInt(process.env.PORT || 8080, 10);
+  const fragment = {
+    id: fragments.length + 1,
+    type,
+    content,
+  };
 
-// Start a server listening on this port
-const server = stoppable(
-  app.listen(port, () => {
-    // Log a message that the server has started, and which port it's using.
-    logger.info({ port }, `Server started`);
-  })
-);
+  fragments.push(fragment);
 
-// Export our server instance so other parts of our code can access it if necessary.
-module.exports = server;
+  res.status(201).json(fragment);
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
