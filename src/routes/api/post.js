@@ -21,10 +21,10 @@ router.post('/fragments', async (req, res) => {
 
     const baseURL = process.env.API_URL || `http://${req.headers.host}`;
     const location = new URL(`/v1/fragments/${fragment.id}`, baseURL).toString();
-    res.setHeader('Location', location);
-// console.log("POST JS", responseBody);
+    // console.log("POST JS", responseBody);
     // Response directly includes fragment details
     const responseBody = { ...fragment };
+    res.setHeader('Location', location);
     res.setHeader('Content-Type', 'application/json');
     res.status(201).json(responseBody);
   } 
