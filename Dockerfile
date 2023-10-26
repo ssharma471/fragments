@@ -30,7 +30,10 @@ COPY ./src /app/src
 COPY ./tests/.htpasswd ./tests/.htpasswd
 
 # Define the command to start the container
-CMD npm start
+# CMD npm start
 
 # Expose the port that the service listens on
 EXPOSE 8080
+
+CMD ["npm", "start"]
+
