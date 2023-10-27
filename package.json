@@ -1,7 +1,7 @@
 {
   "name": "fragments",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.7.0",
   "description": "This is my Lab 1 of Cloud Computing.",
   "main": "index.js",
   "scripts": {
