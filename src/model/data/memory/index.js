@@ -3,6 +3,13 @@ const MemoryDB = require('./memory-db');
 const data = new MemoryDB();
 const metadata = new MemoryDB();
 
+
+// src/model/data/index.js
+
+// If the environment sets an AWS Region, we'll use AWS backend
+// services (S3, DynamoDB); otherwise, we'll use an in-memory db.
+module.exports = process.env.AWS_REGION ? require('./aws') : require('./memory');
+
 // Write a fragment's metadata to memory db. Returns a Promise
 function writeFragment(fragment) {
   return metadata.put(fragment.ownerId, fragment.id, fragment);
